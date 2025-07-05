@@ -1,11 +1,19 @@
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { cn } from "@/lib/utils";
+
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center py-12">
-      {children}
-    </div>
+    <body className={cn('min-h-screen bg-background font-body antialiased')}>
+      <div className="flex  min-h-screen flex-col">
+        <SiteHeader />
+        <main className="flex justify-center items-center p-20 w-full">{children}</main>
+        <SiteFooter />
+      </div>
+    </body>
   );
 }

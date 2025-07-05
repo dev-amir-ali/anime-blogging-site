@@ -11,10 +11,10 @@ import { LayoutDashboard, FileText, PlusCircle, Settings, MessageSquare } from '
 
 const navItems = [
   { href: '/dashboard', icon: <LayoutDashboard />, label: 'Dashboard' },
-  { href: '/dashboard/posts', icon: <FileText />, label: 'My Posts' },
-  { href: '/dashboard/posts/create', icon: <PlusCircle />, label: 'New Post' },
-  { href: '/dashboard/comments', icon: <MessageSquare />, label: 'Comments' },
-  { href: '/dashboard/profile', icon: <Settings />, label: 'Settings' },
+  { href: '/posts', icon: <FileText />, label: 'My Posts' },
+  { href: '/posts/create', icon: <PlusCircle />, label: 'New Post' },
+  { href: '/comments', icon: <MessageSquare />, label: 'Comments' },
+  { href: '/profile', icon: <Settings />, label: 'Settings' },
 ];
 
 export function DashboardNav() {
