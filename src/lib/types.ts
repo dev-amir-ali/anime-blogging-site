@@ -14,8 +14,10 @@ export type User = {
   bio: string;
 };
 
+export type PostStatus = 'published' | 'draft';
+
 export type Post = {
-  id: string;
+  id:string;
   title: string;
   content: string;
   author: User;
@@ -23,5 +25,20 @@ export type Post = {
   imageUrl: string;
   hint?: string;
   keywords: string[];
+  createdAt: string;
+  status: PostStatus;
+};
+
+export type Comment = {
+  id: string;
+  content: string;
+  author: {
+    name: string;
+    avatarUrl: string;
+  };
+  post: {
+    id: string;
+    title: string;
+  };
   createdAt: string;
 };

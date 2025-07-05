@@ -1,55 +1,56 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { MOCK_POSTS } from "@/lib/mock-data";
+import { MOCK_COMMENTS } from "@/lib/mock-data";
 import { MoreHorizontal } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { format } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default function ManagePostsPage() {
-  const userPosts = MOCK_POSTS; // Mock getting posts for the current user
-
+export default function ManageCommentsPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-headline">Manage Your Posts</CardTitle>
+        <CardTitle className="font-headline">Manage Comments</CardTitle>
         <CardDescription>
-          Here you can view, edit, and delete all the posts you've created.
+          Approve, reply to, or delete comments on your posts.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead className="hidden md:table-cell">Category</TableHead>
-              <TableHead className="hidden sm:table-cell">Status</TableHead>
-              <TableHead className="hidden md:table-cell">Created At</TableHead>
+              <TableHead>Comment</TableHead>
+              <TableHead className="hidden md:table-cell">In Response To</TableHead>
+              <TableHead className="hidden md:table-cell">Submitted</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {userPosts.map((post) => (
-              <TableRow key={post.id}>
-                <TableCell className="font-medium">
-                  <Link href={`/posts/${post.id}`} className="hover:underline">
-                    {post.title}
+            {MOCK_COMMENTS.map((comment) => (
+              <TableRow key={comment.id}>
+                <TableCell>
+                  <div className="flex items-start gap-3">
+                     <Avatar className="h-10 w-10">
+                        <AvatarImage src={comment.author.avatarUrl} alt={comment.author.name} data-ai-hint="anime avatar"/>
+                        <AvatarFallback>{comment.author.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                        <p className="font-semibold">{comment.author.name}</p>
+                        <p className="text-muted-foreground line-clamp-2">{comment.content}</p>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell className="hidden md:table-cell font-medium">
+                  <Link href={`/posts/${comment.post.id}`} className="hover:underline">
+                    {comment.post.title}
                   </Link>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                  <Badge variant="outline">{post.category.name}</Badge>
-                </TableCell>
-                <TableCell className="hidden sm:table-cell">
-                    <Badge variant={post.status === 'published' ? 'default' : 'secondary'}>
-                        {post.status.charAt(0).toUpperCase() + post.status.slice(1)}
-                    </Badge>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  {format(new Date(post.createdAt), 'MMM d, yyyy')}
+                  {formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
@@ -61,8 +62,9 @@ export default function ManagePostsPage() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                       <DropdownMenuItem asChild><Link href={`/posts/${post.id}`}>View</Link></DropdownMenuItem>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem>Approve</DropdownMenuItem>
+                      <DropdownMenuItem>Reply</DropdownMenuItem>
+                      <DropdownMenuItem>Mark as Spam</DropdownMenuItem>
                       <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">Delete</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

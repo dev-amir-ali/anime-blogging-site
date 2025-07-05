@@ -1,4 +1,4 @@
-import type { Category, Post, User } from '@/lib/types';
+import type { Category, Post, User, Comment } from '@/lib/types';
 
 export const MOCK_USERS: User[] = [
   { id: 'user-1', name: 'NaruFan_98', avatarUrl: 'https://placehold.co/100x100.png', bio: 'Just a guy who loves ramen and Rasengan.' },
@@ -28,6 +28,7 @@ export const MOCK_POSTS: Post[] = [
     hint: 'anime fight',
     keywords: ['Naruto', 'Sasuke', 'Anime Fights', 'Shonen'],
     createdAt: '2024-05-20T10:00:00Z',
+    status: 'published',
   },
   {
     id: 'post-2',
@@ -39,6 +40,7 @@ export const MOCK_POSTS: Post[] = [
     hint: 'anime titan',
     keywords: ['AOT', 'Eren Yeager', 'Philosophy', 'Seinen'],
     createdAt: '2024-05-19T14:30:00Z',
+    status: 'published',
   },
   {
     id: 'post-3',
@@ -50,6 +52,7 @@ export const MOCK_POSTS: Post[] = [
     hint: 'anime friendship',
     keywords: ['Fruits Basket', 'Tohru Honda', 'Shojo', 'Romance'],
     createdAt: '2024-05-21T11:00:00Z',
+    status: 'draft',
   },
   {
     id: 'post-4',
@@ -61,5 +64,30 @@ export const MOCK_POSTS: Post[] = [
     hint: 'anime sword',
     keywords: ['SAO', 'Kirito', 'Isekai', 'Virtual Reality'],
     createdAt: '2024-05-18T09:00:00Z',
+    status: 'published',
   },
+];
+
+export const MOCK_COMMENTS: Comment[] = [
+    {
+        id: 'comment-1',
+        content: 'Great list! I would have put the Jiraiya vs. Pain fight at number 1 though. The emotional impact was just insane.',
+        author: { name: 'Itachi_Fan', avatarUrl: 'https://placehold.co/100x100.png' },
+        post: { id: 'post-1', title: 'Top 5 Fights in Naruto Shippuden' },
+        createdAt: '2024-05-20T12:05:00Z',
+    },
+    {
+        id: 'comment-2',
+        content: 'This is a fantastic analysis. You really captured the nihilistic undertones of the series. It\'s what makes AoT so compelling.',
+        author: { name: 'SurveyCorpsStan', avatarUrl: 'https://placehold.co/100x100.png' },
+        post: { id: 'post-2', title: 'The Unsettling Philosophy of Attack on Titan' },
+        createdAt: '2024-05-19T18:45:00Z',
+    },
+    {
+        id: 'comment-3',
+        content: 'I completely agree. SAO walked so that other Isekai could run. It has its flaws but it\'s undeniably iconic.',
+        author: { name: 'AsunaBestGirl', avatarUrl: 'https://placehold.co/100x100.png' },
+        post: { id: 'post-4', title: 'Is Sword Art Online the Definitive Isekai?' },
+        createdAt: '2024-05-18T10:30:00Z',
+    },
 ];

@@ -7,13 +7,14 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
-import { LayoutDashboard, FileText, PlusCircle, UserCircle } from 'lucide-react';
+import { LayoutDashboard, FileText, PlusCircle, Settings, MessageSquare } from 'lucide-react';
 
 const navItems = [
   { href: '/dashboard', icon: <LayoutDashboard />, label: 'Dashboard' },
   { href: '/dashboard/posts', icon: <FileText />, label: 'My Posts' },
   { href: '/dashboard/posts/create', icon: <PlusCircle />, label: 'New Post' },
-  { href: '/dashboard/profile', icon: <UserCircle />, label: 'Profile' },
+  { href: '/dashboard/comments', icon: <MessageSquare />, label: 'Comments' },
+  { href: '/dashboard/profile', icon: <Settings />, label: 'Settings' },
 ];
 
 export function DashboardNav() {
@@ -25,7 +26,7 @@ export function DashboardNav() {
         <SidebarMenuItem key={item.href}>
           <SidebarMenuButton
             asChild
-            isActive={pathname.startsWith(item.href)}
+            isActive={pathname === item.href}
             tooltip={item.label}
           >
             <Link href={item.href}>
