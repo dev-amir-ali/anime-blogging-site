@@ -15,7 +15,13 @@ export function SiteHeader() {
           </span>
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-2">
+          <nav className="flex items-center space-x-2 md:space-x-4">
+            <Link href="/about" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary hidden md:inline-block">
+               About
+           </Link>
+            <Link href="/contact" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary hidden md:inline-block">
+               Contact
+           </Link>
             {isLoggedIn ? (
               <>
                 <Button asChild variant="ghost">
